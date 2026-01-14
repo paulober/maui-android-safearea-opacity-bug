@@ -4,8 +4,11 @@ namespace MauiApp1;
 
 public partial class TestPage : ContentPage
 {
+    private SafeAreaRegions _initialRegions;
+    
     public TestPage(SafeAreaRegions regions)
     {
+        _initialRegions = regions;
         InitializeComponent();
 
         // Set SafeAreaEdges FIRST
@@ -48,8 +51,12 @@ public partial class TestPage : ContentPage
         await ContentLayer.ScaleToAsync(1, 200);
         
         // WORKAROUND but the value must be different to the one initially set for ContentLayer!
-        //await Task.Delay(200);
-        //ContentLayer.SafeAreaEdges = new SafeAreaEdges(SafeAreaRegions.SoftInput); 
+        // What we set it to first is random but it must be different to the value that was set before
+        //#if ANDROID
+        //ContentLayer.SafeAreaEdges = new SafeAreaEdges(_initialRegions == SafeAreaRegions.Container
+        //    ? SafeAreaRegions.SoftInput : SafeAreaRegions.Container); 
+        //ContentLayer.SafeAreaEdges = new SafeAreaEdges(_initialRegions); 
+        //#endif
     }
 
     private string GetDescription(SafeAreaRegions regions)
