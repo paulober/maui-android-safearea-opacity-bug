@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.MainPage">
+
+    <VerticalStackLayout Spacing="10" 
+                         Padding="30,0"
+                         VerticalOptions="Center">
+        
+        <Label Text="SafeAreaRegions Test"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+        
+        <Label Text="Test different SafeAreaRegions values on a modal page with transparent background"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"
+               Margin="0,0,0,20"/>
+
+        <Button Text="Test: SafeAreaRegions.None"
+                Clicked="OnTestNoneClicked"
+                BackgroundColor="Red"/>
+
+        <Button Text="Test: SafeAreaRegions.SoftInput"
+                Clicked="OnTestSoftInputClicked"
+                BackgroundColor="Orange"/>
+
+        <Button Text="Test: SafeAreaRegions.Container"
+                Clicked="OnTestContainerClicked"
+                BackgroundColor="Green"/>
+
+        <Button Text="Test: Container | SoftInput"
+                Clicked="OnTestContainerSoftInputClicked"
+                BackgroundColor="Blue"/>
+
+        <Button Text="Test: SafeAreaRegions.All"
+                Clicked="OnTestAllClicked"
+                BackgroundColor="Purple"/>
+
+    </VerticalStackLayout>
+
+</ContentPage>
