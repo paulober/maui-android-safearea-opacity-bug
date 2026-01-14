@@ -15,11 +15,12 @@ public partial class TestPage : ContentPage
         // ============================================================================
         // BUG REPRODUCTION: Setting Opacity=0 BREAKS SafeAreaEdges on Android!
         // ============================================================================
-        ContentLayer.Opacity = 0;  // ← THIS BREAKS SafeAreaEdges on Android!
-        ContentLayer.Scale = 0.8;
+        ContentLayer.Opacity = 0;
+        ContentLayer.Scale = 0.8;  // ← THIS BREAKS SafeAreaEdges on Android! in combination with the later animation
         // ============================================================================
         //
-        // TO FIX THE BUG: Comment out the two lines above
+        // TO FIX THE BUG: Comment out the two lines above or the animation in OnAppearing
+        // or use WORKAROUND from bellow
         // ============================================================================
         
         // Update labels
@@ -45,6 +46,10 @@ public partial class TestPage : ContentPage
         // Animate in (to show the bug visually)
         await ContentLayer.FadeToAsync(1, 200);
         await ContentLayer.ScaleToAsync(1, 200);
+        
+        // WORKAROUND but the value must be different to the one initially set for ContentLayer!
+        //await Task.Delay(200);
+        //ContentLayer.SafeAreaEdges = new SafeAreaEdges(SafeAreaRegions.SoftInput); 
     }
 
     private string GetDescription(SafeAreaRegions regions)
